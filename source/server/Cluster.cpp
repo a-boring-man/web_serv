@@ -6,7 +6,7 @@
 /*   By: jrinna <jrinna@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 10:53:24 by jrinna            #+#    #+#             */
-/*   Updated: 2023/01/13 14:15:10 by jrinna           ###   ########lyon.fr   */
+/*   Updated: 2023/01/16 15:11:23 by jrinna           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -280,7 +280,7 @@ void	Cluster::ft_recv( int fd_nbr ) {
 		return;
 	}
 	buf.append(_tmprecvbuffer, data_len);
-	cout << "message was : -" << buf  << "-" << endl;
+	//cerr << "message was : -" << buf  << "-" << endl;
 	it = findClient(_socketlist[fd_nbr].fd);
 	_clientList[it].getRequest().parse(buf);
 }
