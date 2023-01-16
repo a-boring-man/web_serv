@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Request.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrinna <jrinna@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: ccartet <ccartet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 10:30:35 by ccartet           #+#    #+#             */
-/*   Updated: 2023/01/13 13:47:03 by jrinna           ###   ########lyon.fr   */
+/*   Updated: 2023/01/16 12:01:08 by ccartet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ class Request {
 		bool								_headerOk;
 		std::string							_method;
 		std::string							_path;
-		std::string							_queries; // à passer ensuite à la variable d'environnement QUERY_STRING ?
+		std::string							_queries;
 		std::map<std::string, std::string>	_headerOptions;
 		std::vector<std::string>			_headerOptionSet;
 		std::string							_boundary;
@@ -64,7 +64,7 @@ class Request {
 		bool								_finishParsing;
 
 		int			checkTypeOfBody( void ) const;
-		bool		setRawHeader( std::string const & tmprecv );
+		bool		isCompleteHeader( std::string const & tmprecv );
 		bool		nextLine( std::string str, size_t &i ) const;
 		void		setMethod( size_t &i );
 		void		setMultipartBody( void );
@@ -81,5 +81,3 @@ class Request {
 std::ostream &	operator<<( std::ostream & o, Request const & rhs );
 
 #endif
-
-// ACCEPT <MIME_type>/<MIME_subtype>, */* => Tout type MIME

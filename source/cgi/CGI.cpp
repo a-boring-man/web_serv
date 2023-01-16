@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   CGI.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrinna <jrinna@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: ccartet <ccartet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 13:36:24 by jrinna            #+#    #+#             */
-/*   Updated: 2023/01/13 13:39:47 by jrinna           ###   ########lyon.fr   */
+/*   Updated: 2023/01/16 12:11:13 by ccartet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,7 +154,7 @@ std::string	Client::call_cgi( std::string const & fullPath )
         // std::cerr << "pass: " << pass.c_str() << std::endl;
 		close(fd_in);
         execve(pass.c_str(), argv, _env_malloc);
-        std::cerr << errno << ": " << strerror(errno) << std::endl;
+        // std::cerr << errno << ": " << strerror(errno) << std::endl;
         write(STDOUT_FILENO, "500\0", 4);
         exit(0);
     }
@@ -171,7 +171,7 @@ std::string	Client::call_cgi( std::string const & fullPath )
                 newBody += buf[i];
             ret = read(fd_out, buf, 1024);
         }
-        std::cerr << "|" << newBody << "|" << std::endl;
+        // std::cerr << "|" << newBody << "|" << std::endl;
     }
     dup2(saveIn, STDIN_FILENO);
     dup2(saveOut, STDOUT_FILENO);

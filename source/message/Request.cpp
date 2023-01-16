@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Request.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrinna <jrinna@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: ccartet <ccartet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 10:30:38 by ccartet           #+#    #+#             */
-/*   Updated: 2023/01/13 13:18:29 by jrinna           ###   ########lyon.fr   */
+/*   Updated: 2023/01/16 12:06:02 by ccartet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,20 +48,15 @@ void	Request::parse( std::string const & tmprecv ) // tente de recupperer toute 
 	
 	try {
 		if (tmprecv.size() == 0)
-		{
-			cerr << "ERROR: parse" << std::endl;
 			throw std::runtime_error("400");
-		}
 		if (_method == "")
 		{
-			_headerOk = setRawHeader(tmprecv); // chope le header
+			_headerOk = isCompleteHeader(tmprecv);
 			if (_headerOk == true)
 			{
-				// std::cout << _raw << std::endl;
 				setMethod(i); // check tout les champs du header
 				setPathAndQueries(i);
 				checkVersion(i);
-				//cerr << "i : -" << i << "-\n";
 				setHeaderOptions(i);
 			}
 		}
@@ -83,38 +78,10 @@ void	Request::parse( std::string const & tmprecv ) // tente de recupperer toute 
 	}
 }
 
-bool	Request::setRawHeader( std::string const & tmprecv ) // chope la partie header de la request peut casser si client met plusieur ligne a tester
+bool	Request::isCompleteHeader( std::string const & tmprecv ) // chope la partie header de la request peut casser si client met plusieur ligne a tester
 {
 	_raw.append(tmprecv);
 	return (_raw.find("\r\n\r\n") != _raw.npos);
-	/* std::istringstream	input(tmprecv.c_str());
-	std::string		tmp("");
-	bool			ret = false;
-	std::string		check = tmprecv;
-		
-	while (std::getline(input, tmp)) // chope le header
-	{
-		_raw += tmp;
-		if (tmp.find('\r') == tmp.size() - 1 && tmp != "")
-			_raw += '\n';
-		tmp.clear();
-		if (_raw.find("\r\n\r\n") != _raw.npos)
-		{
-			ret = true;
-			break;
-		}
-	}
-	while (std::getline(input, tmp, '\n'))
-	{
-		_raw += tmp;
-		_raw += '\n';
-		tmp.clear();
-	}
-	if (check.find_last_of('\n') != check.size() - 1)
-		_raw.erase(_raw.size() - 1, 1); */
-	// if (i == 1 && _raw.find('\r') == std::string::npos)
-	// 	ret = true;
-	// return ret;
 }
 
 /*
@@ -127,10 +94,7 @@ void	Request::setMethod( size_t &i )
 	
 	size_t	pos = _raw.find(' ');
 	if (pos == std::string::npos)
-	{
-		std::cerr << "ERROR: setMethod" << std::endl;
 		throw std::runtime_error("400");
-	}
 	tmp = _raw.substr(0, pos);
 	if (tmp != "GET" && tmp != "POST" && tmp != "DELETE")
 		throw std::runtime_error("405");
@@ -148,10 +112,7 @@ void	Request::setPathAndQueries( size_t &i )
 		i++;
 	size_t	pos = _raw.find_first_of(' ', i);
 	if (pos == std::string::npos)
-	{
-		std::cout << "ERROR: setPathAndQueries" << std::endl;
 		throw std::runtime_error("400");
-	}
 	if (pos - i > 1024)
 		throw std::runtime_error("414");
 	pos = _raw.find_first_of(" ?", i);
@@ -173,17 +134,11 @@ void	Request::checkVersion( size_t &i )
 		i++;
 	size_t	pos = _raw.find("HTTP/");
 	if (pos == std::string::npos || pos != i)
-	{
-		std::cerr << "ERROR: checkVersion" << std::endl;
 		throw std::runtime_error("400");
-	}
 	i += 5;
 	pos = _raw.find_first_of("\r\n", i);
 	if (pos == std::string::npos)
-	{
-		std::cout << "ERROR: checkVersion2" << std::endl;
 		throw std::runtime_error("400");
-	}
 	tmp = _raw.substr(i, pos - i);
 	if (tmp != "1.1")
 		throw std::runtime_error("505");
@@ -199,7 +154,6 @@ void	Request::setHeaderOptions( size_t &i )
 	std::string	key;
 	std::string	value;
 
-	//std::cout << "!" << _raw << "!" << std::endl;
 	while (i < _raw.size())
 	{
 		if (nextLine(_raw, i) == false)
@@ -209,10 +163,7 @@ void	Request::setHeaderOptions( size_t &i )
 		if (_raw[i])
 			i++;
 		else
-		{
-			std::cerr << "ERROR: setHeaderOptions" << std::endl;
 			throw std::runtime_error("400");
-		}
 		while (_raw[i] && _raw[i] == ' ')
 			i++;
 		while (_raw[i] && _raw[i] != '\r')
@@ -271,10 +222,7 @@ int	Request::checkTypeOfBody( void ) const
 	if (_headerOptions.find("Transfer-Encoding") == _headerOptions.end() && _headerOptions.find("Content-Length") == _headerOptions.end())
 		return (0); // pas de body
 	if (_headerOptions.find("Transfer-Encoding") != _headerOptions.end() && _headerOptions.find("Content-Length") != _headerOptions.end())
-	{
-		//std::cout << "ERROR: checkTypeOfBody" << std::endl;
 		throw std::runtime_error("400");
-	}
 	if (_headerOptions.find("Transfer-Encoding") != _headerOptions.end() &&
 		_headerOptions.at("Transfer-Encoding").find("chunked") != std::string::npos)
 		return (2); // chunked
@@ -287,23 +235,14 @@ int	Request::checkTypeOfBody( void ) const
 
 void	Request::setSimpleBody( std::string bodyTmp ) // attention a vérifier !!!!
 {
-	std::cout << "||||" << bodyTmp << "|||| and " << bodyTmp.length() << std::endl;
 	if (_bodyLen == 0)
 		_bodyLen = stol(_headerOptions.at("Content-Length"), nullptr, 10);
 	_body.append(bodyTmp, 0, ft_min(bodyTmp.length(), _bodyLen));
 	_bodyLen -= bodyTmp.length();
 	std::string	endB = "--" + _boundary + "--";
-	// if (bodyTmp.find(endB) != std::string::npos)
-	// 	_bodyLen += 1;
-	// if (bodyTmp.find_last_of('\n') == bodyTmp.size() - 1)
-	// 	_bodyLen += 1;
-	std::cout << "BodyLen: " << _bodyLen << std::endl;
 	if (_bodyLen < 0)
-	{
-		std::cerr << "ERROR: setSimpleBody" << std::endl;
 		throw std::runtime_error("400");
-	}
-	if (_bodyLen == 0 || _bodyLen == 1) //
+	if (_bodyLen == 0)
 		_finishParsing = true;
 }
 
@@ -320,7 +259,6 @@ void	Request::setChunkedBody( std::string bodyTmp )
 	{
 		if (_bodyLen <= 0 && (int)line.c_str()[0] != 0)
 		{
-			cerr << "*" << static_cast<int>(bodyTmp.c_str()[0]) << "*\n";
 			_bodyLen = std::stoi(line, nullptr, 16);
 			if (_bodyLen == 0)
 			{

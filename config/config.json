@@ -4,24 +4,24 @@
 		"port" : 80,
 		"error_page" : {"404":"/errors/01/404.html", "502":"/50x.html"}, 
 		"client_max_body_size" : 100000000,
-		"root" : "/Users/jrinna/Documents/cursus42/web_serv/site",
+		"root" : "/Users/ccartet/Desktop/42_projects/webserv_v2/site",
 		"location" : [
 		{
 			"type" : "/",
-			"methode" : ["GET"],
+			"methode" : ["GET", "POST"],
 			"autoindex" : 1,
 			"index" : ["index.html", "index.php"]
 		},
 		
 		{
 			"type" : "/put_test",
-			"root" : "/Users/jrinna/Documents/cursus42/web_serv/site/put_directory",
+			"root" : "/Users/ccartet/Desktop/42_projects/webserv_v2/site/put_directory",
 			"methode" : ["PUT"]
 		},
 
 		{
 			"type" : "/directory",
-			"root" : "/Users/jrinna/Documents/cursus42/web_serv/site/YoupiBanane",
+			"root" : "/Users/ccartet/Desktop/42_projects/webserv_v2/site/YoupiBanane",
 			"methode" : ["GET"],
 			"index" : ["youpi.bad_extension"],
 			"autoindex" : 0
@@ -29,14 +29,14 @@
 
 		{
 			"type" : "/delete",
-			"root" : "/Users/jrinna/Documents/cursus42/web_serv/site/delete_directory",
+			"root" : "/Users/ccartet/Desktop/42_projects/webserv_v2/site/delete_directory",
 			"methode" : ["DELETE"],
 			"index" : ["youpi.bad_extension"]
 		},
 
 		{
 			"type" : "/post",
-			"root" : "/Users/jrinna/Documents/cursus42/web_serv/site/post_directory",
+			"root" : "/Users/ccartet/Desktop/42_projects/webserv_v2/site/post_directory",
 			"methode" : ["POST", "GET"],
 			"index" : ["youpi.bad_extension"]
 		},
@@ -49,7 +49,7 @@
 		{
 			"type" : ".bla",
 			"methode": ["POST", "GET"],
-			"fastcgipass" : "/Users/jrinna/Documents/cursus42/web_serv/site/cgi_executable/cgi_tester"
+			"fastcgipass" : "/Users/ccartet/Desktop/42_projects/webserv_v2/site/cgi_executable/cgi_tester"
 		},
 
 		{
@@ -80,11 +80,11 @@
 		"server_name" : ["www.ccartet.42.fr"],
 		"error_page" : {"404":"/errors/02/404.html", "502":"/50x.html"}, 
 		"client_max_body_size" : 100,
-		"root" : "/Users/jrinna/Documents/cursus42/web_serv/site/put_directory",
+		"root" : "/Users/ccartet/Desktop/42_projects/webserv_v2/site/put_directory",
 		"location" : [
 		{
 			"type" : "/",
-			"root" : "/Users/jrinna/Documents/cursus42/web_serv/site/",
+			"root" : "/Users/ccartet/Desktop/42_projects/webserv_v2/site/",
 			"methode" : ["GET"],
 			"redirection" : "https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley",
 			"autoindex" : 1,
