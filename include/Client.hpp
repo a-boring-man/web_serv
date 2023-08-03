@@ -6,7 +6,7 @@
 /*   By: jrinna <jrinna@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 15:33:45 by ccartet           #+#    #+#             */
-/*   Updated: 2023/01/11 10:20:05 by jrinna           ###   ########lyon.fr   */
+/*   Updated: 2023/08/03 12:10:34 by jrinna           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # include <fcntl.h>
 # include <sys/time.h>
 # include <string>
+# include <string.h>
 # include <unistd.h>
 
 using std::string;

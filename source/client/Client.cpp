@@ -6,7 +6,7 @@
 /*   By: jrinna <jrinna@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 15:21:19 by ccartet           #+#    #+#             */
-/*   Updated: 2023/01/11 11:49:43 by jrinna           ###   ########lyon.fr   */
+/*   Updated: 2023/08/03 12:11:40 by jrinna           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ Client &	Client::operator=( Client const & rhs )
 					int	small_size = 0;
 					for (small_size = 0; rhs._env_malloc[i][small_size]; small_size++){}//
 					env[i] = new char[small_size + 1];
-					std::strcpy(env[i], rhs._env_malloc[i]);//
+					strcpy(env[i], rhs._env_malloc[i]);//
 				}
 				_env_malloc = env;
 			}
@@ -187,9 +187,10 @@ bool	Client::checkMethod( std::string const & method ) const
     std::vector<std::string>::iterator	ite = methAllowed.end();
 	std::vector<std::string>::iterator	itb;
 	
-    for (itb = methAllowed.begin(); itb != ite; itb++)
+    for (itb = methAllowed.begin(); itb != ite; itb++) {
     	if (method == *itb)
 			break;
+	}
 	if (itb == ite)
 		return false;
 	return true;

@@ -6,7 +6,7 @@
 /*   By: jrinna <jrinna@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 15:42:51 by jrinna            #+#    #+#             */
-/*   Updated: 2023/01/11 10:35:06 by jrinna           ###   ########lyon.fr   */
+/*   Updated: 2023/08/03 12:36:23 by jrinna           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 # include <netinet/in.h> // pour sockaddr struct
 # include <iostream>
+# include <cstring>
 
 # define MAX_PENDING_CLIENT 200
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   CGI.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ccartet <ccartet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jrinna <jrinna@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 13:36:24 by jrinna            #+#    #+#             */
-/*   Updated: 2023/01/16 12:11:13 by ccartet          ###   ########.fr       */
+/*   Updated: 2023/08/03 12:09:22 by jrinna           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 #include <stdio.h>
 #include <fstream>
 #include <string>
+#include <cstdlib>
+#include <sys/wait.h>
 
 using std::cout;
 using std::cerr;
@@ -107,7 +109,7 @@ void	Client::map_to_env( std::map<int, std::string> envm ) {
 	for (unsigned i = 0; i < envm.size(); i++)
 	{
 		env[i] = new char[envm[i].size() + 1];
-		std::strcpy(env[i], envm[i].c_str());
+		strcpy(env[i], envm[i].c_str());
 		// std::cerr << env[i] << std::endl;
 	}
 	_env_malloc = env;

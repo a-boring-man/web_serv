@@ -6,11 +6,12 @@
 /*   By: jrinna <jrinna@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 14:16:46 by jrinna            #+#    #+#             */
-/*   Updated: 2023/01/11 10:22:43 by jrinna           ###   ########lyon.fr   */
+/*   Updated: 2023/08/03 12:23:21 by jrinna           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
+#pragma GCC diagnostic ignored "-Wdeprecated-copy"
 
 # include <string>
 # include "Location.hpp"

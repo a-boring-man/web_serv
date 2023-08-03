@@ -6,7 +6,7 @@
 #    By: jrinna <jrinna@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/03 10:05:32 by jrinna            #+#    #+#              #
-#    Updated: 2023/01/04 11:07:42 by jrinna           ###   ########lyon.fr    #
+#    Updated: 2023/08/03 12:17:43 by jrinna           ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ NAME := weebserv
 CC := c++
 FILE_EXT := .cpp
 HEADER_EXT := .hpp
-CPPFLAGS := -std=c++98 #-pedantic
+CPPFLAGS := #-std=c++98 #-pedantic
 
 #update if needed
 CFLAGS = -Wall -Wextra -Werror -MD -I$(DIR_INC) -g3 #-fsanitize=address -g3

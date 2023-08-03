@@ -1,3 +1,3 @@
 curl -X DELETE http://127.0.0.1/delete_directory/to_be_delete
-curl -d @lechemindufichierdonttuveutposterlecontenue http://127.0.0.1/post_directory/lenomquetuveutluidonner
-curl --data-binary @lechemindufichierbinairedonttuveutposterlecontenue http://127.0.0.1/post_directory/lenomquetuveutluidonner
+curl -d @pathtothefileyouwanttopost http://127.0.0.1/post_directory/thenameyouwouldliketogiveit
+curl --data-binary @pathtothefileyouwanttopost http://127.0.0.1/post_directory/thenameyouwouldliketogiveit
