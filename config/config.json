@@ -1,10 +1,10 @@
 [
 	{
 		"host" : "0.0.0.0",
-		"port" : 80,
+		"port" : 8081,
 		"error_page" : {"404":"/errors/01/404.html", "502":"/50x.html"}, 
 		"client_max_body_size" : 100000000,
-		"root" : "/Users/jrinna/Documents/cursus42/web_serv/site",
+		"root" : "/path_to_the_project_folder_here/web_serv/site",
 		"location" : [
 		{
 			"type" : "/",
@@ -15,13 +15,13 @@
 		
 		{
 			"type" : "/put_test",
-			"root" : "/Users/jrinna/Documents/cursus42/web_serv/site/put_directory",
+			"root" : "/path_to_the_project_folder_here/web_serv/site/put_directory",
 			"methode" : ["PUT"]
 		},
 
 		{
 			"type" : "/directory",
-			"root" : "/Users/jrinna/Documents/cursus42/web_serv/site/YoupiBanane",
+			"root" : "/path_to_the_project_folder_here/web_serv/site/YoupiBanane",
 			"methode" : ["GET"],
 			"index" : ["youpi.bad_extension"],
 			"autoindex" : 0
@@ -29,43 +29,43 @@
 
 		{
 			"type" : "/delete",
-			"root" : "/Users/jrinna/Documents/cursus42/web_serv/site/delete_directory",
+			"root" : "/path_to_the_project_folder_here/web_serv/site/delete_directory",
 			"methode" : ["DELETE"],
 			"index" : ["youpi.bad_extension"]
 		},
 
 		{
 			"type" : "/post",
-			"root" : "/Users/jrinna/Documents/cursus42/web_serv/site/post_directory",
+			"root" : "/path_to_the_project_folder_here/web_serv/site/post_directory",
 			"methode" : ["POST", "GET"],
 			"index" : ["youpi.bad_extension"]
 		},
 
 		{
 			"type" : ".py",
-			"fastcgipass" : "/usr/bin/python"
+			"fastcgipass" : "/path_to_the_python_cgi_executable_here/python"
 		},
 
 		{
 			"type" : ".bla",
 			"methode": ["POST", "GET"],
-			"fastcgipass" : "/Users/jrinna/Documents/cursus42/web_serv/site/cgi_executable/cgi_tester"
+			"fastcgipass" : "/path_to_the_project_folder_here/web_serv/site/cgi_executable/cgi_tester"
 		},
 
 		{
 			"type" : ".php",
 			"methode" : ["POST", "GET"],
-			"fastcgipass" : "/usr/bin/php"
+			"fastcgipass" : "/path_to_the_php_cgi_executable_here/php"
 		}]
 	}, 
 
 	{
 		"host" : "0.0.0.0",
-		"port" : 80,
+		"port" : 8082,
 		"server_name" : ["www.ccartet.42.fr"],
 		"error_page" : {"404":"/errors/02/404.html", "502":"/50x.html"}, 
 		"client_max_body_size" : 100,
-		"root" : "/Users/jrinna/",
+		"root" : "/path_of_your_choice_here/",
 		"location" : [
 		{
 			"type" : "/",
@@ -80,16 +80,16 @@
 		"server_name" : ["www.ccartet.42.fr"],
 		"error_page" : {"404":"/errors/02/404.html", "502":"/50x.html"}, 
 		"client_max_body_size" : 100,
-		"root" : "/Users/jrinna/Documents/cursus42/web_serv/site/put_directory",
+		"root" : "/path_to_the_project_folder_here/web_serv/site/put_directory",
 		"location" : [
 		{
 			"type" : "/",
-			"root" : "/Users/jrinna/Documents/cursus42/web_serv/site/",
+			"root" : "/path_to_the_project_folder_here/web_serv/site/",
 			"methode" : ["GET"],
 			"redirection" : "https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley",
 			"autoindex" : 1,
 			"index" : ["youpi.bad_extension"],
-			"fastcgipass" : "/usr/bin/php"
+			"fastcgipass" : "/path_to_the_php_cgi_executable_here/php"
 		}]
 	}
 ]
