@@ -8,8 +8,10 @@ The program then parses the configuration file and creates multiple virtual HTTP
 
 ## Usage
 
-Go to the config folder and change the paths in all the root and fastcgipass options to the appropriate locations.
+Go to the ```config``` folder and change the paths in all the ```root``` and ```fastcgipass``` options to the appropriate locations.
+
 You can also play with the other options if you want to see what happens.
 Then, go back to the root of the project folder and enter the command make.
+
 The server should start up and the console should display the number of correctly configured virtual servers.
 You can then go to your localhost address in a browser to see the results.
